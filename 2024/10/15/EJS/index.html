@@ -375,7 +375,7 @@ app.listen(3000, function() &#123;
 <h2 id="2"><a href="#2" class="headerlink" title="2. &lt;%-%&gt;"></a>2. &lt;%-%&gt;</h2><p><strong>將輸出過來的變數做保留字元來使用。</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">&lt;%- category %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>其變數送過來後，會被當作 HTML 語法來使用。<br>因此 <code>&lt;%- category %&gt; 變成 &lt;p&gt;&lt;b&gt;Characters:&lt;/b&gt;&lt;/p&gt;。</code></p>
-<h2 id><a href="#" class="headerlink" title="&lt;% %&gt;"></a>&lt;% %&gt;</h2><p><strong>將標籤內的內容，當作程式邏輯來使用，像是 if else 判斷式、for 迴圈。</strong></p>
+<h2 id=""><a href="#" class="headerlink" title="&lt;% %&gt;"></a>&lt;% %&gt;</h2><p><strong>將標籤內的內容，當作程式邏輯來使用，像是 if else 判斷式、for 迴圈。</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">&lt;% for(var i&#x3D;0;i&lt;characters.length;i++) %&gt; <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上圖就是迴圈處理，<br>把 characters 陣列裡的成員，依照清單方式一一印出來</p>
 <pre class="line-numbers language-none"><code class="language-none">( &lt;li&gt;&lt;%&#x3D; characters[i]%&gt;&lt;&#x2F;li&gt; )
