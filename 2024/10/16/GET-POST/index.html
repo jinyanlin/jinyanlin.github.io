@@ -349,18 +349,24 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="What-is-HTTP"><a href="#What-is-HTTP" class="headerlink" title="What is HTTP?"></a>What is HTTP?</h1><p><strong>旨在實現客戶端和伺服器之間的通訊。</strong><br>Example: 客戶端（瀏覽器）向伺服器發送HTTP請求；然後伺服器回傳響應給客戶端。回應包含有關請求的狀態訊息，也可能包含請求的內容。<br><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*s2u2kEx-8rAhxGaW" alt="Photo by Django Request and Response Lifecycle"></p>
-<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p><strong>全名 HyperText Transfer Protocol，中文為超文本傳輸協定</strong></p>
+                <h1>What is HTTP?</h1>
+<p><strong>旨在實現客戶端和伺服器之間的通訊。</strong><br>
+Example: 客戶端（瀏覽器）向伺服器發送HTTP請求；然後伺服器回傳響應給客戶端。回應包含有關請求的狀態訊息，也可能包含請求的內容。<br>
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*s2u2kEx-8rAhxGaW" alt="Photo by Django Request and Response Lifecycle"></p>
+<h2 id="HTTP">HTTP</h2>
+<p><strong>全名 HyperText Transfer Protocol，中文為超文本傳輸協定</strong></p>
 <ul>
 <li>是全球資訊網的通訊基礎，當我們在上網或網頁前端跟後端做溝通時就要遵照 HTTP 「協定」</li>
 <li>預設 port ：80</li>
 </ul>
-<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p><strong>全名 HyperText Transfer Protocol Secure，中文為超文本傳輸安全協定</strong></p>
+<h2 id="HTTPS">HTTPS</h2>
+<p><strong>全名 HyperText Transfer Protocol Secure，中文為超文本傳輸安全協定</strong></p>
 <ul>
-<li>由於 HTTP 一直都有 安全性的問題，因此 HTTPS 就是基於 HTTP 並利用 SSL&#x2F;TLS 將資訊加密封包的另一種更安全的協定。</li>
+<li>由於 HTTP 一直都有 安全性的問題，因此 HTTPS 就是基於 HTTP 並利用 SSL/TLS 將資訊加密封包的另一種更安全的協定。</li>
 <li>預設 port ：443</li>
 </ul>
-<h2 id="HTTP-Methods"><a href="#HTTP-Methods" class="headerlink" title="HTTP Methods"></a>HTTP Methods</h2><ul>
+<h2 id="HTTP-Methods">HTTP Methods</h2>
+<ul>
 <li>GET</li>
 <li>POST</li>
 <li>PUT</li>
@@ -372,11 +378,10 @@
 <li>TRACE</li>
 </ul>
 <hr>
-
-<h3 id="The-GET-Method"><a href="#The-GET-Method" class="headerlink" title="The GET Method"></a>The GET Method</h3><p><strong>GET 用於從指定資源請求資料。</strong></p>
-<p>查詢字串（名稱&#x2F;值對）在 GET 請求的 URL 中傳送：</p>
+<h3 id="The-GET-Method">The GET Method</h3>
+<p><strong>GET 用於從指定資源請求資料。</strong></p>
+<p>查詢字串（名稱/值對）在 GET 請求的 URL 中傳送：</p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">/test/demo_form.php?name1=value1&amp;name2=value2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <p><b>關於 GET 請求的一些注意事項：</b></p>
 <ul>
 <li>GET請求可以被緩存</li>
@@ -386,7 +391,8 @@
 <li>GET 請求有長度限制</li>
 <li>GET請求僅用於請求資料（不修改）</li>
 </ul>
-<h3 id="The-POST-Method"><a href="#The-POST-Method" class="headerlink" title="The POST Method"></a>The POST Method</h3><p><strong>POST 用於將資料傳送到伺服器以建立&#x2F;更新資源。</strong></p>
+<h3 id="The-POST-Method">The POST Method</h3>
+<p><strong>POST 用於將資料傳送到伺服器以建立/更新資源。</strong></p>
 <p>透過POST傳送到伺服器的資料儲存在HTTP Request請求中：</p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">POST /test/demo_form.php HTTP/1.1
 Host: w3schools.com
@@ -399,9 +405,12 @@ name1=value1&amp;name2=value2<span aria-hidden="true" class="line-numbers-rows">
 <li>POST 請求無法添加書籤</li>
 <li>POST請求對資料長度沒有限制</li>
 </ul>
-<h2 id="GET-和-POST-同樣都能傳送值"><a href="#GET-和-POST-同樣都能傳送值" class="headerlink" title="GET 和 POST 同樣都能傳送值"></a>GET 和 POST 同樣都能傳送值</h2><ul>
-<li>GET 會把要傳送的值放在header上，會直接顯示在URL，因此不適合傳輸隱密的資料，<br> 同時 GET 會被Cache紀錄、且有長度限制</li>
-<li>POST是把資料放在訊息主體內進行傳送，不會被Cache紀錄且對資料長度沒有限制，<br> 因此POST比GET更安全，所以較適合用來傳送隱密性較高的資料</li>
+<h2 id="GET-和-POST-同樣都能傳送值">GET 和 POST 同樣都能傳送值</h2>
+<ul>
+<li>GET 會把要傳送的值放在header上，會直接顯示在URL，因此不適合傳輸隱密的資料，<br>
+同時 GET 會被Cache紀錄、且有長度限制</li>
+<li>POST是把資料放在訊息主體內進行傳送，不會被Cache紀錄且對資料長度沒有限制，<br>
+因此POST比GET更安全，所以較適合用來傳送隱密性較高的資料</li>
 </ul>
 
                 
@@ -429,7 +438,7 @@ name1=value1&amp;name2=value2<span aria-hidden="true" class="line-numbers-rows">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2024/10/16/GET-POST/">http://example.com/2024/10/16/GET-POST/</a>
+                    <a href="https://jinyanlin.github.io/2024/10/16/GET-POST/">https://jinyanlin.github.io/2024/10/16/GET-POST/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -521,7 +530,8 @@ name1=value1&amp;name2=value2<span aria-hidden="true" class="line-numbers-rows">
                 <a href="/2024/10/17/ecommerence/">
                     <div class="card-image">
                         
-                        <img src="/homepage.jpg" class="responsive-img" alt="ecommerence">
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="ecommerence">
                         
                         <span class="card-title">ecommerence</span>
                     </div>

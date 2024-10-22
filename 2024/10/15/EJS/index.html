@@ -353,8 +353,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="EJS-Embedded-Javascript"><a href="#EJS-Embedded-Javascript" class="headerlink" title="EJS(Embedded Javascript)"></a>EJS(Embedded Javascript)</h2><p>EJS 的全名是「Embedded Javascript」，顧名思義就是內嵌式的樣板引擎，可以將邏輯與內容直接嵌入到 HTML 頁面上，也就是 EJS 可以讓我們利用 JavaScript 生成 HTML 頁面 ，以下為 app.js 範例 :</p>
-<h3 id="app-js"><a href="#app-js" class="headerlink" title="app.js"></a>app.js</h3><pre class="line-numbers language-none"><code class="language-none">var express &#x3D; require(&#39;express&#39;);
+                <h2 id="EJS-Embedded-Javascript">EJS(Embedded Javascript)</h2>
+<p>EJS 的全名是「Embedded Javascript」，顧名思義就是內嵌式的樣板引擎，可以將邏輯與內容直接嵌入到 HTML 頁面上，也就是 EJS 可以讓我們利用 JavaScript 生成 HTML 頁面 ，以下為 app.js 範例 :</p>
+<h3 id="app-js">app.js</h3>
+<pre class="line-numbers language-none"><code class="language-none">var express &#x3D; require(&#39;express&#39;);
 var app &#x3D; express();
 app.set(&#39;view engine&#39;, &#39;ejs&#39;);
 app.get(&#39;&#x2F;&#39;, function (req, res) &#123;
@@ -367,22 +369,28 @@ app.get(&#39;&#x2F;&#39;, function (req, res) &#123;
 app.listen(3000, function() &#123;
   console.log(&#39;Example app listening on port 3000!&#39;);
 &#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-<h1 id="語法"><a href="#語法" class="headerlink" title="語法"></a>語法</h1><h2 id="1"><a href="#1" class="headerlink" title="1. &lt;%&#x3D;%&gt;"></a>1. &lt;%&#x3D;%&gt;</h2><p><strong>將輸出過來的變數當值來使用。</strong></p>
+<h1>語法</h1>
+<h2 id="1">1. &lt;%=%&gt;</h2>
+<p><strong>將輸出過來的變數當值來使用。</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">&lt;%&#x3D; game %&gt;     &#x2F;&#x2F; game 就是 game:&#39;Final Fantasy VII&#39;，<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>所以， <code>&lt;h1&gt;&lt;%= game %&gt;&lt;/h1&gt;</code> &#x3D; <code>&lt;h1&gt;Final Fantasy VII&lt;/h1&gt;。</code><br>你就把它當作像是呼叫函式時，所傳輸過去的『參數』，這樣會比較好理解。</p>
-<h2 id="2"><a href="#2" class="headerlink" title="2. &lt;%-%&gt;"></a>2. &lt;%-%&gt;</h2><p><strong>將輸出過來的變數做保留字元來使用。</strong></p>
+<p>所以， <code>&lt;h1&gt;&lt;%= game %&gt;&lt;/h1&gt;</code> = <code>&lt;h1&gt;Final Fantasy VII&lt;/h1&gt;。</code><br>
+你就把它當作像是呼叫函式時，所傳輸過去的『參數』，這樣會比較好理解。</p>
+<h2 id="2">2. &lt;%-%&gt;</h2>
+<p><strong>將輸出過來的變數做保留字元來使用。</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">&lt;%- category %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>其變數送過來後，會被當作 HTML 語法來使用。<br>因此 <code>&lt;%- category %&gt; 變成 &lt;p&gt;&lt;b&gt;Characters:&lt;/b&gt;&lt;/p&gt;。</code></p>
-<h2 id=""><a href="#" class="headerlink" title="&lt;% %&gt;"></a>&lt;% %&gt;</h2><p><strong>將標籤內的內容，當作程式邏輯來使用，像是 if else 判斷式、for 迴圈。</strong></p>
+<p>其變數送過來後，會被當作 HTML 語法來使用。<br>
+因此 <code>&lt;%- category %&gt; 變成 &lt;p&gt;&lt;b&gt;Characters:&lt;/b&gt;&lt;/p&gt;。</code></p>
+<h2 id>&lt;% %&gt;</h2>
+<p><strong>將標籤內的內容，當作程式邏輯來使用，像是 if else 判斷式、for 迴圈。</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">&lt;% for(var i&#x3D;0;i&lt;characters.length;i++) %&gt; <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>上圖就是迴圈處理，<br>把 characters 陣列裡的成員，依照清單方式一一印出來</p>
+<p>上圖就是迴圈處理，<br>
+把 characters 陣列裡的成員，依照清單方式一一印出來</p>
 <pre class="line-numbers language-none"><code class="language-none">( &lt;li&gt;&lt;%&#x3D; characters[i]%&gt;&lt;&#x2F;li&gt; )
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <hr>
-<h1 id="Mongodb"><a href="#Mongodb" class="headerlink" title="Mongodb"></a>Mongodb</h1><h2 id="增加blog到mongodb"><a href="#增加blog到mongodb" class="headerlink" title="增加blog到mongodb"></a>增加blog到mongodb</h2><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;mongoose and mongo sandbox routes  
+<h1>Mongodb</h1>
+<h2 id="增加blog到mongodb">增加blog到mongodb</h2>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;mongoose and mongo sandbox routes  
 app.get(&#39;&#x2F;add-blog&#39;,(req,res)&#x3D;&gt;&#123;
     const blog &#x3D; new Blog(&#123;
         title: &#39;new blog2&#39;,
@@ -399,9 +407,8 @@ app.get(&#39;&#x2F;add-blog&#39;,(req,res)&#x3D;&gt;&#123;
         &#125;)
 &#125;)
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-<h2 id="顯示所有db資料"><a href="#顯示所有db資料" class="headerlink" title="顯示所有db資料"></a>顯示所有db資料</h2><pre class="line-numbers language-none"><code class="language-none">app.get(&#39;&#x2F;all-blog&#39;,(req,res)&#x3D;&gt;&#123;
+<h2 id="顯示所有db資料">顯示所有db資料</h2>
+<pre class="line-numbers language-none"><code class="language-none">app.get(&#39;&#x2F;all-blog&#39;,(req,res)&#x3D;&gt;&#123;
     Blog.find()
         .then((result)&#x3D;&gt;&#123;
             res.send(result);
@@ -410,7 +417,8 @@ app.get(&#39;&#x2F;add-blog&#39;,(req,res)&#x3D;&gt;&#123;
             console.log(err);
         &#125;);
 &#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="選擇單一資料利用findById"><a href="#選擇單一資料利用findById" class="headerlink" title="選擇單一資料利用findById"></a>選擇單一資料利用findById</h2><pre class="line-numbers language-none"><code class="language-none">app.get(&#39;&#x2F;single-blog&#39;,(req,res)&#x3D;&gt;&#123;
+<h2 id="選擇單一資料利用findById">選擇單一資料利用findById</h2>
+<pre class="line-numbers language-none"><code class="language-none">app.get(&#39;&#x2F;single-blog&#39;,(req,res)&#x3D;&gt;&#123;
     Blog.findById(&#39;622f017be5574e63d3fc3bdf&#39;)
     .then((result)&#x3D;&gt;&#123;
         res.send(result);
@@ -419,17 +427,17 @@ app.get(&#39;&#x2F;add-blog&#39;,(req,res)&#x3D;&gt;&#123;
         console.log(err);
     &#125;);
 &#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
 <hr>
-<h1 id="res-req"><a href="#res-req" class="headerlink" title="res &#x2F; req"></a><a target="_blank" rel="noopener" href="https://expressjs.com/zh-tw/guide/routing.html">res &#x2F; req</a></h1><table>
+<h1><a target="_blank" rel="noopener" href="https://expressjs.com/zh-tw/guide/routing.html">res / req</a></h1>
+<table>
 <thead>
 <tr>
 <th>方法</th>
 <th>說明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>res.download()</td>
 <td>提示您提供要下載的檔案。</td>
 </tr>
@@ -465,7 +473,8 @@ app.get(&#39;&#x2F;add-blog&#39;,(req,res)&#x3D;&gt;&#123;
 <td>res.sendStatus()</td>
 <td>設定回應狀態碼，並以回應內文形式傳送其字串表示法。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <hr>
 
                 
@@ -493,7 +502,7 @@ app.get(&#39;&#x2F;add-blog&#39;,(req,res)&#x3D;&gt;&#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2024/10/15/EJS/">http://example.com/2024/10/15/EJS/</a>
+                    <a href="https://jinyanlin.github.io/2024/10/15/EJS/">https://jinyanlin.github.io/2024/10/15/EJS/</a>
                 </span>
             </div>
             <div class="reprint__notice">

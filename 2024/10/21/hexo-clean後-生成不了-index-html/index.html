@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ecommerence, Alex Lin">
-    <meta name="description" content="為了改進畢業專題購物車系統。">
+    <meta name="keywords" content="hexo clean後 生成不了 index.html, Alex Lin">
+    <meta name="description" content="今天在修改完blog後，執行hexo g的時候產生了一些檔案但是沒有產生靜態的index.html，導致使用hexo server後，跑出Can not get / 錯誤訊息。
+在網上搜尋答案是有可能是缺少modules，我按照其它部落格的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ecommerence | Alex Lin</title>
+    <title>hexo clean後 生成不了 index.html | Alex Lin</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -266,12 +267,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ecommerence</h1>
+                    <h1 class="description center-align post-title">hexo clean後 生成不了 index.html</h1>
                 </div>
             </div>
         </div>
@@ -295,20 +296,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel/">
-                                <span class="chip bg-color">Laravel</span>
-                            </a>
-                        
-                            <a href="/tags/Google-Facebook-API/">
-                                <span class="chip bg-color">Google/Facebook API</span>
-                            </a>
-                        
-                            <a href="/tags/Paypal/">
-                                <span class="chip bg-color">Paypal</span>
-                            </a>
-                        
-                            <a href="/tags/ECpay/">
-                                <span class="chip bg-color">ECpay</span>
+                            <a href="/tags/Hexo/">
+                                <span class="chip bg-color">Hexo</span>
                             </a>
                         
                     </div>
@@ -319,8 +308,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/PHP-Laravel/" class="post-category">
-                                PHP(Laravel)
+                            <a href="/categories/Hexo/" class="post-category">
+                                Hexo
                             </a>
                         
                     </div>
@@ -332,7 +321,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-10-17
+                    2024-10-21
                 </div>
                 
 
@@ -361,37 +350,27 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1>Shopping Cart with PHP laravel</h1>
-<p>GitHub : <a target="_blank" rel="noopener" href="https://github.com/jinyanlin/shopping-cart-php-laravel">project 作品</a></p>
-<h4 id="此專題為了改進畢業專題購物車系統，提供下列功能"><strong>此專題為了改進畢業專題購物車系統，提供下列功能 :</strong></h4>
-<ul>
-<li>使用Facebook和Google api登入</li>
-<li>產品名稱搜尋</li>
-<li>即時顯示願望清單和購物車數量</li>
-<li>結帳時可使用Paypal和ECPAY</li>
-</ul>
-<h1>專題介紹</h1>
-<h2 id="首頁">首頁</h2>
-<p><strong>使用者未登入時的首頁會列出特價熱門商品。。</strong><br>
-<img src="homepage.jpg" alt></p>
-<h2 id="登入">登入</h2>
-<p><strong>使用FaceBook 與 Google 第三方登入串接。</strong><br>
-<img src="login.jpg" alt></p>
-<h2 id="搜尋">搜尋</h2>
-<p><strong>可在對話框內搜尋想要的關鍵字，會及時列出相關商品，亦可直接點選商品按搜尋即可找尋該商品。</strong><br>
-<img src="search.jpg" alt></p>
-<h2 id="商品介紹">商品介紹</h2>
-<p><strong>商品會出現圖片、售價、是否有存貨、加入願望清單與購物車。</strong><br>
-<img src="product.jpg" alt></p>
-<h2 id="願望清單">願望清單</h2>
-<p><strong>可供用戶有購買的想法但不想加入購物車的功能。</strong><br>
-<img src="wishlist.jpg" alt></p>
-<h2 id="購物車">購物車</h2>
-<p><strong>用戶查看當前你想購買的物品。</strong><br>
-<img src="cart.jpg" alt></p>
-<h2 id="ECPAY">ECPAY</h2>
-<p><strong>使用綠界付款</strong><br>
-<img src="ecpay.jpg" alt></p>
+                <p><strong>今天在修改完blog後，執行hexo g的時候產生了一些檔案但是沒有產生靜態的index.html，導致使用hexo server後，跑出Can not get / 錯誤訊息。<br>
+在網上搜尋答案是有可能是缺少modules，我按照其它部落格的解決如下</strong></p>
+<ol>
+<li>查看npm安裝各hexo模組是否正常</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">ls</span> <span class="token parameter variable">--depth</span> <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<br>
+<ol start="2">
+<li>把npm 等相關版本更新</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> npm-upgrade
+npm-upgrade<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="指令解說">指令解說</h2>
+<h4 id="hexo-clean">hexo clean</h4>
+<p><strong>在使用hexo clean後，主要會清除快取檔案 (db.json) 以及編譯檔案 (public)</strong></p>
+<h2 id="解決方法">解決方法</h2>
+<p><strong>使用其他blogger的方法都沒辦法解決後，到node_modules底下找出<code>hexo-renderer-markdown-it</code>，如果沒有必須安裝。</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> node-renderer-markdown-it<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<br>
+<p><strong>經過再次</strong><code>hexo clean</code>，<code>hexo generate</code><br>
+<strong>把index.html 生成出來且不會出現404。</strong></p>
 
                 
             </div>
@@ -418,7 +397,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jinyanlin.github.io/2024/10/17/ecommerence/">https://jinyanlin.github.io/2024/10/17/ecommerence/</a>
+                    <a href="https://jinyanlin.github.io/2024/10/21/hexo-clean%E5%BE%8C-%E7%94%9F%E6%88%90%E4%B8%8D%E4%BA%86-index-html/">https://jinyanlin.github.io/2024/10/21/hexo-clean%E5%BE%8C-%E7%94%9F%E6%88%90%E4%B8%8D%E4%BA%86-index-html/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -456,20 +435,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel/">
-                                    <span class="chip bg-color">Laravel</span>
-                                </a>
-                            
-                                <a href="/tags/Google-Facebook-API/">
-                                    <span class="chip bg-color">Google/Facebook API</span>
-                                </a>
-                            
-                                <a href="/tags/Paypal/">
-                                    <span class="chip bg-color">Paypal</span>
-                                </a>
-                            
-                                <a href="/tags/ECpay/">
-                                    <span class="chip bg-color">ECpay</span>
+                                <a href="/tags/Hexo/">
+                                    <span class="chip bg-color">Hexo</span>
                                 </a>
                             
                         </div>
@@ -515,9 +482,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2024/10/21/hexo-clean%E5%BE%8C-%E7%94%9F%E6%88%90%E4%B8%8D%E4%BA%86-index-html/">
                     <div class="card-image">
@@ -535,9 +503,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-10-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -550,6 +518,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -568,31 +537,31 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/10/16/GET-POST/">
+                <a href="/2024/10/17/ecommerence/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="GET/POST">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="ecommerence">
                         
-                        <span class="card-title">GET/POST</span>
+                        <span class="card-title">ecommerence</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            GET and POST 區別。
+                            為了改進畢業專題購物車系統。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-17
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/HTTP/" class="post-category">
-                                    HTTP
+                            <a href="/categories/PHP-Laravel/" class="post-category">
+                                    PHP(Laravel)
                                 </a>
                             
                             
@@ -602,8 +571,20 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/HTTP-Method/">
-                        <span class="chip bg-color">HTTP Method</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
+                    </a>
+                    
+                    <a href="/tags/Google-Facebook-API/">
+                        <span class="chip bg-color">Google/Facebook API</span>
+                    </a>
+                    
+                    <a href="/tags/Paypal/">
+                        <span class="chip bg-color">Paypal</span>
+                    </a>
+                    
+                    <a href="/tags/ECpay/">
+                        <span class="chip bg-color">ECpay</span>
                     </a>
                     
                 </div>
