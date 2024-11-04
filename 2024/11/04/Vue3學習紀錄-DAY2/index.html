@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Vue3學習紀錄 DAY1, Alex Lin">
-    <meta name="description" content="Vue.js - 漸進式框架
-Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元件系統」 。
-
-開始使用 Vue3，不一定需要先懂 npm/yarn 等等的套件管理工具。 最簡單的方式就是在你的 HTML 底部加上一行:
-&amp;l">
+    <meta name="keywords" content="Vue3學習紀錄 DAY2, Alex Lin">
+    <meta name="description" content="Vue.js 實體物件
+一開始我們都需要先建立一個 Vue 的物件實體，並且將這個物件指定至某個變數，如範例裡的 vm 之中。
+// Vue 3.0
+const app = Vue.createApp(&amp;#123;
+    data() &amp;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +21,7 @@ Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vue3學習紀錄 DAY1 | Alex Lin</title>
+    <title>Vue3學習紀錄 DAY2 | Alex Lin</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -270,12 +270,12 @@ Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vue3學習紀錄 DAY1</h1>
+                    <h1 class="description center-align post-title">Vue3學習紀錄 DAY2</h1>
                 </div>
             </div>
         </div>
@@ -324,7 +324,7 @@ Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-11-01
+                    2024-11-04
                 </div>
                 
 
@@ -353,44 +353,95 @@ Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Vue-js-漸進式框架">Vue.js - 漸進式框架</h3>
-<p><strong>Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元件系統」 。</strong><br>
-<img src="https://book.vue.tw/assets/img/1-1-vue-logo.221d77e7.png" alt></p>
-<p>開始使用 Vue3，不一定需要先懂 npm/yarn 等等的套件管理工具。 最簡單的方式就是在你的 HTML 底部加上一行:</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Vue <span class="token number">3.0</span> <span class="token operator">--</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://unpkg.com/vue@3/dist/vue.global.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="指令式渲染-vs-宣告式渲染">指令式渲染 vs. 宣告式渲染</h3>
-<h5 id="指令式渲染-過去">指令式渲染(過去)</h5>
-<p>過去所熟悉使用jQuery或原生JavaScirpt在操作網頁畫面，大多以直接操作DOM物件為主方式，舉例，假設今天有個input輸入框與一個h1標籤</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>message<span class="token punctuation">"</span></span> <span class="token attr-name">value</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>hello world<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>此時希望能夠做到使用者在輸入框輸入文字時，也能同步到h1標籤文字內容，用JavaScript可以這樣做：</p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">document.querySelector(&#39;#message&#39;).innerHTML &#x3D; document.querySelector(&#39;[name&#x3D;&quot;message&quot;]&#39;).value;
-
-   document.querySelector(&#39;[name&#x3D;&quot;message&quot;]&#39;).addEventListener(&#39;input&#39;, (element)&#x3D;&gt;&#123;
-       document.querySelector(&#39;#message&#39;).innerText &#x3D; element.target.value;
-   &#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>將指定的輸入框透過<code>addEventListener</code>監聽<code>input</code>事件，並在事件觸發時去更新<code>h1</code>標籤內文字。<br>
-<strong>像這種指令加動作，以操作DOM為基礎模式，我們通常稱為指令式渲染(Imperative programming)。</strong><br>
-<a target="_blank" rel="noopener" href="https://postimg.cc/ZBtRbc3Q"><img src="https://i.postimg.cc/pTynBcdP/jquery.jpg" alt="jQuery方式同步h1內容"></a></p>
-<h5 id="宣告式渲染-現在">宣告式渲染(現在)</h5>
-<p>宣告式渲染以<code>「宣告」</code>方式來表現JavaScript裡面的狀態(資料)，當狀態被更新時，Vue.js會根據資料或狀態內容，同步更新HTML將資料渲染出來。</p>
-<br>
-<p>宣告式渲染又是什麼呢? 讓我們將前面例子用Vue.js改寫:</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    &#123;&#123; message&#125;&#125;
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+                <h2 id="Vue-js-實體物件">Vue.js 實體物件</h2>
+<p><strong>一開始我們都需要先建立一個 Vue 的物件實體，並且將這個物件指定至某個變數，如範例裡的 vm 之中。</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// Vue 3.0</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
     <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
             <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'Hello from Vue'</span><span class="token punctuation">,</span>
             <span class="token literal-property property">num</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
         <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>同樣地，雖然內容有些不同，在 HTML 裡我們一樣可以看出有 h1 標籤與 input 的文字輸入框， 而 JavaScript 裡頭明顯少了直接對 DOM 操作的語法，取而代之的是一個透過 new 建立的 Vue 實體。</p>
-<p><strong>Vue.js 會將大括號的內容，對應至 Vue.js 實體的 message 狀態，並且將之即時渲染至畫面上。</strong></p>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>Vue.createApp()</code>  會得到一個新的物件，並將它指定給<code>app</code> 變數，而新生成的這個物件，將它稱為「<code>Vue.js 的實體物件</code>」。 Vue.js 就是透過這個實體物件來掛載在網頁上的某個 DOM 節點來控制網頁節點對應的內容。</p>
+<blockquote>
+<h5 id="小提醒">小提醒</h5>
+<p>當我們建立 Vue.js 的實體物件時，也可以不指定變數，等待需要的時候再 mount 到某個節點上：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+ <span class="token comment">// options</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="掛載至-DOM">掛載至 DOM</h3>
+<p><strong>建立 Vue.js 實體後的下一步，就是要將這個實體掛載至網頁的 DOM 節點以取得網頁的控制權。</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  <span class="token comment">// options</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>像這樣，透過 mount()  指定了掛載的 DOM 節點後，就可以順利將這個 Vue.js 實體掛載至 <code>html &lt;div id=&quot;app&quot;&gt; </code>這個節點。</p>
+<h3 id="關注點分離">關注點分離</h3>
+<p><strong>將不同的功能分開，大多專注在資料處理上，渲染的事情就交由Vue去渲染，在處理資料時候，不會把DOM元素放到任何METHOD或DATA處理，關注點分離就是避免寫一起搞混。</strong><br>
+<a target="_blank" rel="noopener" href="https://hackmd.io/@JohnsonMao/Summer-Camp-Vue3/https%3A%2F%2Fhackmd.io%2F%40dbFY0UD9SUeKmNXhWf01ew%2FBkJoW-hn_%2F%252FC05go-8iTSS-nrMwKU22kA"><img src="https://i.imgur.com/zMu6v5x.png" alt="取自六角學院"></a></p>
+<h4 id="範例">範例</h4>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  <span class="token comment">// data 函式</span>
+  <span class="token function-variable function">data</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 一定是用 return</span>
+    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'Hello from Vue'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'alex'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">num</span><span class="token operator">:</span> <span class="token number">0</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token comment">// methods 方法</span>
+  <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+  
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token comment">// mounted 函式</span>
+  <span class="token function-variable function">mounted</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="1-data-資料">1. data 資料</h4>
+<p><strong>在 Vue 實體的定義的狀態，就是透過 data 屬性來儲存。</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// Vue 3.0</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'Hello from Vue'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">num</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在 Vue.js 的實體中定義了 message 這個狀態，而它的值為 ‘Hello from Vue’ 的字串。</p>
+<p>要怎麼將這個狀態輸出至網頁呢？ 就必須要依靠 Vue.js 的模板語法。 Vue.js 的模板語法採用的是 Mustache 語法，也就是在 HTML 以兩個大括號 {} 來表示，大括號的內容是 Vue.js 實體物件內的狀態。</p>
+<p>以剛剛的範例來說，我們可以在指定的 <code>&lt;div id=&quot;app&quot;&gt;</code> 加上：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  &#123;&#123; name &#125;&#125; Welcome!
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>輸出結果為 <code>textarea Hello from Vue Welcome!</code></p>
+<h4 id="2-methods-方法">2. methods 方法</h4>
+<p><strong>在 Vue.js 的實體裡面，我們可以將重複使用的邏輯包裝起來，放在 methods 的屬性中。</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">price</span> <span class="token operator">:</span> <span class="token number">20</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">quantity</span><span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token function-variable function">total</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>price <span class="token operator">*</span> <span class="token keyword">this</span><span class="token punctuation">.</span>quantity<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>那麼在HTML裡，可以透過呼叫 total() 的方式來取得總金額：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>app</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>  總金額共 &#123;&#123; total() &#125;&#125; 元 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- ... 中間略 ... --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>  總金額共 &#123;&#123; total() &#125;&#125; 元 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -417,7 +468,7 @@ Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jinyanlin.github.io/2024/11/01/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY1/">https://jinyanlin.github.io/2024/11/01/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY1/</a>
+                    <a href="https://jinyanlin.github.io/2024/11/04/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY2/">https://jinyanlin.github.io/2024/11/04/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -502,9 +553,10 @@ Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2024/11/04/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY2/">
                     <div class="card-image">
@@ -522,9 +574,9 @@ Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-11-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -537,6 +589,7 @@ Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -555,13 +608,13 @@ Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/10/30/LeetCode-1-Two-Sum/">
+                <a href="/2024/11/01/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="LeetCode 1. Two Sum">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Vue3學習紀錄 DAY1">
                         
-                        <span class="card-title">LeetCode 1. Two Sum</span>
+                        <span class="card-title">Vue3學習紀錄 DAY1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -572,14 +625,14 @@ Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/LeetCode/" class="post-category">
-                                    LeetCode
+                            <a href="/categories/Vue3/" class="post-category">
+                                    Vue3
                                 </a>
                             
                             
@@ -589,12 +642,8 @@ Vue.js 最主要的核心功能有兩個部分：「宣告式渲染」與 「元
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Array/">
-                        <span class="chip bg-color">Array</span>
-                    </a>
-                    
-                    <a href="/tags/Hash-Table/">
-                        <span class="chip bg-color">Hash Table</span>
+                    <a href="/tags/vue/">
+                        <span class="chip bg-color">vue</span>
                     </a>
                     
                 </div>
