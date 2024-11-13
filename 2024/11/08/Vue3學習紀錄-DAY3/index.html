@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Vue3學習紀錄 DAY2, Alex Lin">
-    <meta name="description" content="Vue.js 實體物件
-一開始我們都需要先建立一個 Vue 的物件實體，並且將這個物件指定至某個變數，如範例裡的 vm 之中。
-// Vue 3.0
-const app = Vue.createApp(&amp;#123;
-    data() &amp;">
+    <meta name="keywords" content="Vue3學習紀錄 DAY3, Alex Lin">
+    <meta name="description" content="指令
+帶有 v- 開頭的屬性，在 Vue.js 裡面就被稱為 「指令」(directive) ， 當與指令搭配運算式 (expression) 的值被改變時，對應的標籤也會隨之影響。
+屬性綁定 - v-bind
+&amp;lt;body&gt;
+    ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +21,7 @@ const app = Vue.createApp(&amp;#123;
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vue3學習紀錄 DAY2 | Alex Lin</title>
+    <title>Vue3學習紀錄 DAY3 | Alex Lin</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -270,12 +270,12 @@ const app = Vue.createApp(&amp;#123;
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vue3學習紀錄 DAY2</h1>
+                    <h1 class="description center-align post-title">Vue3學習紀錄 DAY3</h1>
                 </div>
             </div>
         </div>
@@ -324,7 +324,7 @@ const app = Vue.createApp(&amp;#123;
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-11-04
+                    2024-11-08
                 </div>
                 
 
@@ -353,96 +353,124 @@ const app = Vue.createApp(&amp;#123;
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Vue-js-實體物件">Vue.js 實體物件</h2>
-<p><strong>一開始我們都需要先建立一個 Vue 的物件實體，並且將這個物件指定至某個變數，如範例裡的 vm 之中。</strong></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// Vue 3.0</span>
-<span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
-            <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'Hello from Vue'</span><span class="token punctuation">,</span>
-            <span class="token literal-property property">num</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>Vue.createApp()</code>  會得到一個新的物件，並將它指定給<code>app</code> 變數，而新生成的這個物件，將它稱為「<code>Vue.js 的實體物件</code>」。 Vue.js 就是透過這個實體物件來掛載在網頁上的某個 DOM 節點來控制網頁節點對應的內容。</p>
+                <h2 id="指令">指令</h2>
+<p>帶有 v- 開頭的屬性，在 Vue.js 裡面就被稱為 「指令」(directive) ， 當與指令搭配運算式 (expression) 的值被改變時，對應的標籤也會隨之影響。</p>
+<h3 id="屬性綁定-v-bind">屬性綁定 - v-bind</h3>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; customid &#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+     <span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+            <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+                        <span class="token literal-property property">customid</span><span class="token operator">:</span> <span class="token string">'mycustom'</span>
+                <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面程式的執行結果，標籤 &lt;p&gt; 的 id 並不會如我們所預期地出現 mycustom， 因為像 { } 的模板語法並沒有辦法被套用在 HTML 標籤的「屬性」上， 如果我們需要由 Vue.js 來控制標籤的「屬性」，則可以使用 v-bind 的指令。</p>
+<p><code>v-bind</code> 指令的用法很簡單，我們只要再標籤上面加上<code>v-bind:屬性名稱</code>， 以剛剛的範例來說，我們希望由 Vue 的實體來輸出 id，就可以這樣做：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>customid<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>實際在瀏覽器渲染時會變成：<br>
+<img src="https://i.postimg.cc/wvYLpzDb/vbind.jpg" alt="vbind.jpg"></p>
 <blockquote>
-<h5 id="小提醒">小提醒</h5>
-<p>當我們建立 Vue.js 的實體物件時，也可以不指定變數，等待需要的時候再 mount 到某個節點上：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
- <span class="token comment">// options</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-app<span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h6 id="小提醒">小提醒</h6>
+<p><code>v-bind</code> 指令除了完整的 <code>v-bind:屬性名稱</code> 寫法外，也可以直接簡寫成 <code>:屬性名稱</code>，如：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>customid<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">:id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>customid<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
-<h3 id="掛載至-DOM">掛載至 DOM</h3>
-<p><strong>建立 Vue.js 實體後的下一步，就是要將這個實體掛載至網頁的 DOM 節點以取得網頁的控制權。</strong></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-  <span class="token comment">// options</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-app<span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>像這樣，透過 mount()  指定了掛載的 DOM 節點後，就可以順利將這個 Vue.js 實體掛載至 <code>html &lt;div id=&quot;app&quot;&gt; </code>這個節點。</p>
-<h3 id="關注點分離">關注點分離</h3>
-<p><strong>將不同的功能分開，大多專注在資料處理上，渲染的事情就交由Vue去渲染，在處理資料時候，不會把DOM元素放到任何METHOD或DATA處理，關注點分離就是避免寫一起搞混。</strong><br>
-<a target="_blank" rel="noopener" href="https://hackmd.io/@JohnsonMao/Summer-Camp-Vue3/https%3A%2F%2Fhackmd.io%2F%40dbFY0UD9SUeKmNXhWf01ew%2FBkJoW-hn_%2F%252FC05go-8iTSS-nrMwKU22kA"><img src="https://i.imgur.com/zMu6v5x.png" alt="取自六角學院"></a></p>
-<h4 id="範例">範例</h4>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-  <span class="token comment">// data 函式</span>
-  <span class="token function-variable function">data</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 一定是用 return</span>
-    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
-      <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'Hello from Vue'</span><span class="token punctuation">,</span>
-      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'alex'</span><span class="token punctuation">,</span>
-      <span class="token literal-property property">num</span><span class="token operator">:</span> <span class="token number">0</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token comment">// methods 方法</span>
-  <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-  
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token comment">// mounted 函式</span>
-  <span class="token function-variable function">mounted</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="1-data-資料">1. data 資料</h4>
-<p><strong>在 Vue 實體的定義的狀態，就是透過 data 屬性來儲存。</strong></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// Vue 3.0</span>
-<span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
-            <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'Hello from Vue'</span><span class="token punctuation">,</span>
-            <span class="token literal-property property">num</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在 Vue.js 的實體中定義了 message 這個狀態，而它的值為 ‘Hello from Vue’ 的字串。</p>
-<p>要怎麼將這個狀態輸出至網頁呢？ 就必須要依靠 Vue.js 的模板語法。 Vue.js 的模板語法採用的是 Mustache 語法，也就是在 HTML 以兩個大括號 {} 來表示，大括號的內容是 Vue.js 實體物件內的狀態。</p>
-<p>以剛剛的範例來說，我們可以在指定的 <code>&lt;div id=&quot;app&quot;&gt;</code> 加上：</p>
+<h3 id="表單綁定-v-model">表單綁定 - v-model</h3>
+<p>常見的表單元素像是 <code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code> 以及 <code>&lt;select&gt;</code> 等，在 Vue.js 可透過 v-model 來進行資料的「雙向」綁定， v-model 會根據不同的表單類別來更新元素的內容。</p>
+<h4 id="input-文字框">input 文字框</h4>
+<p><strong>當我們在 input 加上 <code>v-model=&quot;text&quot;</code> 之後，此時這個輸入框便會自動被綁定 input 事件。</strong></p>
+<br>
+如果我們希望輸入文字框時可同步顯示在下面，可以這樣做 :
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  &#123;&#123; name &#125;&#125; Welcome!
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>輸出結果為 <code>textarea Hello from Vue Welcome!</code></p>
-<h4 id="2-methods-方法">2. methods 方法</h4>
-<p><strong>在 Vue.js 的實體裡面，我們可以將重複使用的邏輯包裝起來，放在 methods 的屬性中。</strong></p>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>form-control<span class="token punctuation">"</span></span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">customid</span><span class="token operator">:</span> <span class="token string">'mycustom'</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.postimg.cc/FHmKNK6S/vtext.jpg" alt="vtext 結果"></p>
+<h4 id="radio-checkbox-選擇框">radio / checkbox 選擇框</h4>
+<p>input 標籤提供了兩種選擇框，分別是 radio 的單選框，以及 checkbox 的複選框。</p>
+<br>
+<p>radio 的單選框我們只需要在對應的 input 加上 v-model，並且透過 value 指定它的值：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>one<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>picked<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>one<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>two<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>picked<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>two<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Picked: &#123;&#123;picked&#125;&#125; <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">customid</span><span class="token operator">:</span> <span class="token string">'mycustom'</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">picked</span><span class="token operator">:</span><span class="token number">1</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>因為 data 裡的 picked 預設為 1，所以執行時畫面上<code> &lt;input type=&quot;radio&quot; id=&quot;one&quot; value=&quot;1&quot;&gt;</code> 會預設被選中。</p>
+<p><img src="https://i.postimg.cc/mkXvcBNT/ratio.jpg" alt="ratio.jpg"></p>
+<h4 id="select-下拉列表選單">select 下拉列表選單</h4>
+<p><code>select</code> 元素是很常見的下拉式選單，它用來與 <code>option</code> 做搭配，如下：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selected<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">disabled</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>請選擇<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">></span></span>Lin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">></span></span>Chen<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">></span></span>Huang<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Selected: &#123;&#123; selected || '未選擇' &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> app <span class="token operator">=</span> Vue<span class="token punctuation">.</span><span class="token function">createApp</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
-            <span class="token literal-property property">price</span> <span class="token operator">:</span> <span class="token number">20</span><span class="token punctuation">,</span>
-            <span class="token literal-property property">quantity</span><span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token function-variable function">total</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>price <span class="token operator">*</span> <span class="token keyword">this</span><span class="token punctuation">.</span>quantity<span class="token punctuation">;</span>
+            <span class="token literal-property property">selected</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
         <span class="token punctuation">&#125;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>那麼在HTML裡，可以透過呼叫 total() 的方式來取得總金額：</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>app</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>  總金額共 &#123;&#123; total() &#125;&#125; 元 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-    <span class="token comment">&lt;!-- ... 中間略 ... --></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>  總金額共 &#123;&#123; total() &#125;&#125; 元 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.postimg.cc/SNh0KRNB/select.jpg" alt="select.jpg"></p>
+<p><code>v-model</code> 必須使用在 <code>&lt;select&gt;</code> 標籤，不可套用在 <code>&lt;option&gt;</code> 標籤中。</p>
+<h4 id="v-model-與修飾子">v-model 與修飾子</h4>
+<p><strong><code>v-model</code> 在 <code>&lt;input&gt;</code> 的 text 文字輸入框對應的是 input 事件。</strong></p>
+<blockquote>
+<p>當使用者每敲一次鍵盤就會觸發一次 input 事件，若是不希望這個文字輸入框的內容更新次數這麼頻繁，<br>
+Vue.js 提供了「修飾子」 (Modifiers) 的增強功能來協助我們，修飾子會以 .XXX 的形式附加在指令後面。</p>
+</blockquote>
+<h5 id="lazy">.lazy</h5>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">v-model.lazy</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>v-model</code>後面加上<code>.lazy</code>，這個input輸入框就會從原本input事件改為監聽change事件，明白地說，使用者在離框輸入焦點時才會更新data內容。</p>
+<h5 id="number">.number</h5>
+<p><strong>在 <code>input</code> 輸入框當中，即便我們輸入的都是數字，但實際上由 DOM API 取出的時候都會是以「字串」的形式出現。</strong></p>
+<p>當使用者分別為 num1 與 num2 兩個輸入框填入 1 與 2 後， sum 仍會出現 12 的結果。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">v-model.number</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>num1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> + <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">v-model.number</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>num2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> = &#123;&#123; sum &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如此一來，當 v-model 在更新狀態的時候，會在背後試圖將對應的資料轉型為數字的格式， 即便 sum 維持 return this.num1 + this.num2 的程式碼，回傳的也會是兩個數字相加的結果了。</p>
+<h5 id="trim">.trim</h5>
+<p><strong>想要針對某個輸入框自動過濾前後的空白字元時，就可以在 v-model 後面加上 .trim 修飾子：</strong></p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">v-model.trim</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -468,7 +496,7 @@ app<span class="token punctuation">.</span><span class="token function">mount</s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jinyanlin.github.io/2024/11/04/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY2/">https://jinyanlin.github.io/2024/11/04/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY2/</a>
+                    <a href="https://jinyanlin.github.io/2024/11/08/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY3/">https://jinyanlin.github.io/2024/11/08/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -553,9 +581,10 @@ app<span class="token punctuation">.</span><span class="token function">mount</s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2024/11/08/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY3/">
                     <div class="card-image">
@@ -573,9 +602,9 @@ app<span class="token punctuation">.</span><span class="token function">mount</s
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-11-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -588,6 +617,7 @@ app<span class="token punctuation">.</span><span class="token function">mount</s
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -606,13 +636,13 @@ app<span class="token punctuation">.</span><span class="token function">mount</s
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/11/01/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY1/">
+                <a href="/2024/11/04/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Vue3學習紀錄 DAY1">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Vue3學習紀錄 DAY2">
                         
-                        <span class="card-title">Vue3學習紀錄 DAY1</span>
+                        <span class="card-title">Vue3學習紀錄 DAY2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -623,7 +653,7 @@ app<span class="token punctuation">.</span><span class="token function">mount</s
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-04
                             </span>
                         <span class="publish-author">
                             
