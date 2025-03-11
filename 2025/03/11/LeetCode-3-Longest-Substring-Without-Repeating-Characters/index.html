@@ -4,10 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LeetCode 1. Two Sum, Kyle Lin">
-    <meta name="description" content="LeetCode 1. Two Sum
-Explain
-Given an array of integers nums and an integer target, return indices of the two numbers suc">
+    <meta name="keywords" content="LeetCode 3 Longest Substring Without Repeating Characters, Kyle Lin">
+    <meta name="description" content="Given a string s, find the length of the longest substring without duplicate characters.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +17,7 @@ Given an array of integers nums and an integer target, return indices of the
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>LeetCode 1. Two Sum | Kyle Lin</title>
+    <title>LeetCode 3 Longest Substring Without Repeating Characters | Kyle Lin</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -268,12 +266,12 @@ Given an array of integers nums and an integer target, return indices of the
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LeetCode 1. Two Sum</h1>
+                    <h1 class="description center-align post-title">LeetCode 3 Longest Substring Without Repeating Characters</h1>
                 </div>
             </div>
         </div>
@@ -297,12 +295,16 @@ Given an array of integers nums and an integer target, return indices of the
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Array/">
-                                <span class="chip bg-color">Array</span>
-                            </a>
-                        
                             <a href="/tags/Hash-Table/">
                                 <span class="chip bg-color">Hash Table</span>
+                            </a>
+                        
+                            <a href="/tags/String/">
+                                <span class="chip bg-color">String</span>
+                            </a>
+                        
+                            <a href="/tags/Sliding-Window/">
+                                <span class="chip bg-color">Sliding Window</span>
                             </a>
                         
                     </div>
@@ -326,7 +328,7 @@ Given an array of integers nums and an integer target, return indices of the
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-10-30
+                    2025-03-11
                 </div>
                 
 
@@ -355,92 +357,47 @@ Given an array of integers nums and an integer target, return indices of the
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="LeetCode-1-Two-Sum">LeetCode 1. Two Sum</h3>
-<h4 id="Explain">Explain</h4>
-<p>Given an array of integers <code>nums</code> and an integer <code>target</code>, return <em>indices of the two numbers such that they add up to <code>target</code></em>.</p>
-<p>You may assume that each input would have <strong><em>exactly</em> one solution</strong>, and you may not use the <em>same</em> element twice.</p>
-<p>You can return the answer in any order.</p>
-<p><strong>Example 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">Input: nums &#x3D; [2,7,11,15], target &#x3D; 9
-Output: [0,1]
-Explanation: Because nums[0] + nums[1] &#x3D;&#x3D; 9, we return [0, 1].
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p><strong>Example 2:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">Input: nums &#x3D; [3,2,4], target &#x3D; 6
-Output: [1,2]
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><strong>Example 3:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">Input: nums &#x3D; [3,3], target &#x3D; 6
-Output: [0,1]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h4 id="想法">想法</h4>
-<hr>
-<h6 id="Two-Pointer">Two Pointer</h6>
-<p><strong>使用Two Pointer但是會讓時間為O(n^2)</strong></p>
+                <h3 id="Longest-Substring-Without-Repeating-Characters">Longest Substring Without Repeating Characters</h3>
+<h5 id="Explain">Explain</h5>
+<p>Given a string s, find the length of the longest substring without duplicate characters.</p>
+<p>Example 1:</p>
+<p>Input: s = “abcabcbb”<br>
+Output: 3<br>
+Explanation: The answer is “abc”, with the length of 3.<br>
+Example 2:</p>
+<p>Input: s = “bbbbb”<br>
+Output: 1<br>
+Explanation: The answer is “b”, with the length of 1.<br>
+Example 3:</p>
+<p>Input: s = “pwwkew”<br>
+Output: 3<br>
+Explanation: The answer is “wke”, with the length of 3.<br>
+Notice that the answer must be a substring, “pwke” is a subsequence and not a substring.</p>
+<h3 id="解法思路">解法思路</h3>
+<h4 id="1-暴力解法">1. 暴力解法</h4>
+<p><strong>遍歷字串的每個字元 s[i]，然後在每個起點 i 開始，透過內部的 while 迴圈計算從 i 開始的最長無重複字元子字串。</strong></p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
-    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">twoSum</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> n <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token function">lengthOfLongestSubstring</span><span class="token punctuation">(</span>string s<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> n <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment">//用來記錄當前找到最大長度</span>
         <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token keyword">int</span> remainder <span class="token operator">=</span> target<span class="token operator">-</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">&lt;</span>n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-                <span class="token keyword">if</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span>
-                    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>i<span class="token punctuation">,</span>j<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+            vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">seen</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//找出字元是否出現過</span>
+            <span class="token keyword">int</span> j<span class="token operator">=</span>i<span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>j<span class="token operator">&lt;</span>n <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>seen<span class="token punctuation">[</span>s<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                seen<span class="token punctuation">[</span>s<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>     <span class="token comment">//紀錄當前字源是否已經出現過</span>
             <span class="token punctuation">&#125;</span>
-            
-        <span class="token punctuation">&#125;</span><span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h6 id="Hash-Table">Hash Table</h6>
-<p><strong>使用Hash查找Array所花時間為O(1)</strong></p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">twoSum</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        unordered_map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> m<span class="token punctuation">;</span>
-
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            <span class="token keyword">int</span> comple <span class="token operator">=</span> target <span class="token operator">-</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>comple<span class="token punctuation">)</span> <span class="token operator">!=</span> m<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-                <span class="token keyword">return</span> <span class="token punctuation">&#123;</span> m<span class="token punctuation">[</span>comple<span class="token punctuation">]</span> <span class="token punctuation">,</span>i<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
-            m<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
+            ans <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> j<span class="token operator">-</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">&#125;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="Map-vs-unordered-map">Map vs unordered map</h5>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Data Structure</th>
-<th>Ordered</th>
-<th>Repeat</th>
-<th>Change number</th>
-<th>Search</th>
-<th>Insert / Delete</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>map</td>
-<td>Red-Black Tree</td>
-<td>Ordered</td>
-<td>no</td>
-<td>no</td>
-<td>O(log n)</td>
-<td>O(log n)</td>
-</tr>
-<tr>
-<td>unordered_map</td>
-<td>Hash Table</td>
-<td>UnOrdered</td>
-<td>no</td>
-<td>no</td>
-<td>O(1)</td>
-<td>O(1)</td>
-</tr>
-</tbody>
-</table>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>seen[s[j++]]++ :<br>
+從 i 開始，向右擴展 s[i…j-1]，直到找到重複字元。 seen[s[j]] 判斷字元 s[j] 是否已經在目前子字串中出現過。如果沒有出現過（!seen[s[j]]），則將 seen[s[j]]++，表示該字元已被記錄過。</li>
+</ul>
+<h4 id="2-Sliding-Window">2. Sliding Window</h4>
+<p><strong>一個 left 和 right 指針，right 指針擴大窗口，left 指針縮小窗口，以確保窗口內沒有重複字元。</strong></p>
 
                 
             </div>
@@ -467,7 +424,7 @@ Output: [0,1]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jinyanlin.github.io/2024/10/30/LeetCode-1-Two-Sum/">https://jinyanlin.github.io/2024/10/30/LeetCode-1-Two-Sum/</a>
+                    <a href="https://jinyanlin.github.io/2025/03/11/LeetCode-3-Longest-Substring-Without-Repeating-Characters/">https://jinyanlin.github.io/2025/03/11/LeetCode-3-Longest-Substring-Without-Repeating-Characters/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -505,12 +462,16 @@ Output: [0,1]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Array/">
-                                    <span class="chip bg-color">Array</span>
-                                </a>
-                            
                                 <a href="/tags/Hash-Table/">
                                     <span class="chip bg-color">Hash Table</span>
+                                </a>
+                            
+                                <a href="/tags/String/">
+                                    <span class="chip bg-color">String</span>
+                                </a>
+                            
+                                <a href="/tags/Sliding-Window/">
+                                    <span class="chip bg-color">Sliding Window</span>
                                 </a>
                             
                         </div>
@@ -556,46 +517,56 @@ Output: [0,1]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2024/11/01/Vue3%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-DAY1/">
+                <a href="/2025/03/11/LeetCode-3-Longest-Substring-Without-Repeating-Characters/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Vue3學習紀錄 DAY1">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="LeetCode 3 Longest Substring Without Repeating Characters">
                         
-                        <span class="card-title">Vue3學習紀錄 DAY1</span>
+                        <span class="card-title">LeetCode 3 Longest Substring Without Repeating Characters</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Given a string s, find the length of the longest substring without duplicate characters.
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-11-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-03-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Vue3/" class="post-category">
-                                    Vue3
+                            <a href="/categories/LeetCode/" class="post-category">
+                                    LeetCode
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/vue/">
-                        <span class="chip bg-color">vue</span>
+                    <a href="/tags/Hash-Table/">
+                        <span class="chip bg-color">Hash Table</span>
+                    </a>
+                    
+                    <a href="/tags/String/">
+                        <span class="chip bg-color">String</span>
+                    </a>
+                    
+                    <a href="/tags/Sliding-Window/">
+                        <span class="chip bg-color">Sliding Window</span>
                     </a>
                     
                 </div>
@@ -609,24 +580,24 @@ Output: [0,1]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/10/24/LeetCode-4-Median-of-Two-Sorted-Arrays/">
+                <a href="/2025/03/03/LeetCode-2-Add-Two-Numbers/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="LeetCode 4. Median of Two Sorted Arrays">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="LeetCode 2 Add Two Numbers">
                         
-                        <span class="card-title">LeetCode 4. Median of Two Sorted Arrays</span>
+                        <span class="card-title">LeetCode 2 Add Two Numbers</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Median of Two Sorted Arrays
+                            You are given two non-empty linked lists representing two non-negative integers
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-03-03
                             </span>
                         <span class="publish-author">
                             
@@ -643,16 +614,12 @@ Output: [0,1]<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Array/">
-                        <span class="chip bg-color">Array</span>
+                    <a href="/tags/Linked-List/">
+                        <span class="chip bg-color">Linked List</span>
                     </a>
                     
-                    <a href="/tags/Binary-Search/">
-                        <span class="chip bg-color">Binary Search</span>
-                    </a>
-                    
-                    <a href="/tags/Divide-and-Couquer/">
-                        <span class="chip bg-color">Divide and Couquer</span>
+                    <a href="/tags/Recursive/">
+                        <span class="chip bg-color">Recursive</span>
                     </a>
                     
                 </div>
