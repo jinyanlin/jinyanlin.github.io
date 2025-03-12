@@ -379,12 +379,12 @@ Notice that the answer must be a substring, “pwke” is a subsequence and not 
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
     <span class="token keyword">int</span> <span class="token function">lengthOfLongestSubstring</span><span class="token punctuation">(</span>string s<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> n <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment">//用來記錄當前找到最大長度</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">seen</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//找出字元是否出現過</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">seen</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//ASCII 0~127</span>
             <span class="token keyword">int</span> j<span class="token operator">=</span>i<span class="token punctuation">;</span>
-            <span class="token keyword">while</span><span class="token punctuation">(</span>j<span class="token operator">&lt;</span>n <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>seen<span class="token punctuation">[</span>s<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>j<span class="token operator">&lt;</span>len <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>seen<span class="token punctuation">[</span>s<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
                 seen<span class="token punctuation">[</span>s<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>     <span class="token comment">//紀錄當前字源是否已經出現過</span>
             <span class="token punctuation">&#125;</span>
             ans <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> j<span class="token operator">-</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -398,6 +398,33 @@ Notice that the answer must be a substring, “pwke” is a subsequence and not 
 </ul>
 <h4 id="2-Sliding-Window">2. Sliding Window</h4>
 <p><strong>一個 left 和 right 指針，right 指針擴大窗口，left 指針縮小窗口，以確保窗口內沒有重複字元。</strong></p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">lengthOfLongestSubstring</span><span class="token punctuation">(</span>string s<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">seen</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> left<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>right<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>right<span class="token operator">&lt;</span>len<span class="token punctuation">;</span>right<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            left <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span>seen<span class="token punctuation">[</span>s<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ans <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> right<span class="token operator">-</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            seen<span class="token punctuation">[</span>s<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> right<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>right 會逐步向右移動，探索字串中的每個字元。</li>
+<li>當 right 移動到新的位置，程式會檢查當前字元 s[right] 是否已經在窗口中出現過（即它在 seen 中的位置是否大於或等於 left）。</li>
+<li>如果是，則更新 left 為 seen[s[right]]，這樣就把左邊界移到那個重複字元的下一個位置，確保窗口內的字元都是唯一的。</li>
+<li>更新 ans 為 right - left，這是當前窗口的長度。</li>
+<li>最後，將當前字符的位置記錄到 seen[s[right]]。</li>
+</ul>
+<blockquote>
+<h3 id="Sliding-Window-Technique">Sliding Window Technique</h3>
+<p>The Sliding Window Technique is a powerful method to solve problems involving arrays or strings. It optimizes problems that involve <code>contiguous subarrays</code> or <code>substrings</code>, making it more efficient than brute-force approaches.<br>
+<img src="https://miro.medium.com/v2/resize:fit:786/format:webp/1*UE1TqaLS6smxDqsIvuPTUQ.png" alt="Taken from Rishabh Singh"></p>
+</blockquote>
 
                 
             </div>
