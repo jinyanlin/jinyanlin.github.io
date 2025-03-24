@@ -4,10 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LeetCode 7. Reverse Integer, Kyle Lin">
-    <meta name="description" content="7. Reverse Integer
+    <meta name="keywords" content="LeetCode 8. String to Integer (atoi), Kyle Lin">
+    <meta name="description" content="LeetCode 8. String to Integer (atoi)
 Problem Statement
-Given a signed 32-bit integer x, return x with its digits reversed. If reversing x ">
+實作 C 語言中的 atoi 函式，將字串轉換為 32-bit 有符號整數。
+實作 myAtoi(string s) 函式，遵循以">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +20,7 @@ Given a signed 32-bit integer x, return x with its digits reversed. If reversing
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>LeetCode 7. Reverse Integer | Kyle Lin</title>
+    <title>LeetCode 8. String to Integer (atoi) | Kyle Lin</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -268,12 +269,12 @@ Given a signed 32-bit integer x, return x with its digits reversed. If reversing
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LeetCode 7. Reverse Integer</h1>
+                    <h1 class="description center-align post-title">LeetCode 8. String to Integer (atoi)</h1>
                 </div>
             </div>
         </div>
@@ -297,8 +298,8 @@ Given a signed 32-bit integer x, return x with its digits reversed. If reversing
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Math/">
-                                <span class="chip bg-color">Math</span>
+                            <a href="/tags/String/">
+                                <span class="chip bg-color">String</span>
                             </a>
                         
                     </div>
@@ -326,7 +327,7 @@ Given a signed 32-bit integer x, return x with its digits reversed. If reversing
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2025-03-14
+                    2025-03-24
                 </div>
                 
 
@@ -355,52 +356,111 @@ Given a signed 32-bit integer x, return x with its digits reversed. If reversing
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="7-Reverse-Integer">7. Reverse Integer</h3>
-<h4 id="Problem-Statement">Problem Statement</h4>
-<p>Given a signed 32-bit integer <code>x</code>, return <code>x</code> with its digits reversed. If reversing <code>x</code> causes the value to go outside the signed 32-bit integer range <code>[-2^31, 2^31 - 1]</code>, then return 0.<br>
-<strong>Assume the environment does not allow you to store 64-bit integers (signed or unsigned).</strong></p>
-<p><strong>Example 1</strong>:<br>
-Input: x = 123<br>
-Output: 321</p>
-<p><strong>Example 2</strong>:<br>
-Input: x = -123<br>
-Output: -321</p>
-<p><strong>Example 3</strong>:<br>
-Input: x = 120<br>
-Output: 21</p>
-<h3 id="解法思路">解法思路</h3>
+                <h2 id="LeetCode-8-String-to-Integer-atoi">LeetCode 8. String to Integer (atoi)</h2>
+<h3 id="Problem-Statement">Problem Statement</h3>
+<p>實作 C 語言中的 <code>atoi</code> 函式，將字串轉換為 32-bit 有符號整數。</p>
+<p>實作 <code>myAtoi(string s)</code> 函式，遵循以下規則：<br>
+The algorithm for myAtoi(string s) is as follows:</p>
 <ol>
-<li><strong>溢位檢查</strong>: 在每次累加 <code>ans</code> 之前，會檢查是否會超過 <code>int</code> 的範圍 (<code>INT_MAX</code> 或 <code>INT_MIN</code>)。如果會超過，則直接返回 0。
-<ul>
-<li><code>INT_MAX</code> 是 2147483647</li>
-<li><code>INT_MIN</code> 是 -2147483648</li>
-</ul>
-</li>
+<li><strong>Whitespace</strong>: Ignore any leading whitespace (&quot; &quot;).</li>
+<li><strong>Signedness</strong>: Determine the sign by checking if the next character is ‘-’ or ‘+’, assuming positivity if neither present.</li>
+<li><strong>Conversion</strong>: Read the integer by skipping leading zeros until a non-digit character is encountered or the end of the string is reached. If no digits were read, then the result is 0.</li>
+<li><strong>Rounding</strong>: If the integer is out of the 32-bit signed integer range [-2^31, 2^31 - 1], then round the integer to remain in the range. Specifically, integers less than -2^31 should be rounded to -2^31, and integers greater than 2^31 - 1 should be rounded to 2^31 - 1.<br>
+Return the integer as the final result.</li>
 </ol>
+<hr>
+<h3 id="Example">Example</h3>
+<table>
+<thead>
+<tr>
+<th>輸入</th>
+<th>輸出</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;42&quot;</code></td>
+<td><code>42</code></td>
+<td>簡單數字轉換</td>
+</tr>
+<tr>
+<td><code>&quot;   -42&quot;</code></td>
+<td><code>-42</code></td>
+<td>前導空格與負號</td>
+</tr>
+<tr>
+<td><code>&quot;4193 with words&quot;</code></td>
+<td><code>4193</code></td>
+<td>讀到非數字為止</td>
+</tr>
+<tr>
+<td><code>&quot;words and 987&quot;</code></td>
+<td><code>0</code></td>
+<td>非數字開頭</td>
+</tr>
+<tr>
+<td><code>&quot;-91283472332&quot;</code></td>
+<td><code>-2147483648</code></td>
+<td>整數下溢處理</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="解題思路">解題思路</h3>
+<h4 id="1-去除前導空白">1. 去除前導空白</h4>
+<p>使用 <code>while</code> 迴圈略過空格：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">while</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">' '</span><span class="token punctuation">)</span> i<span class="token operator">++</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="2-處理正負號">2. 處理正負號</h4>
+<p>確認當前字元是否為 <code>'+'</code> 或 <code>'-'</code> 並設定 <code>sign</code>：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'+'</span> <span class="token operator">||</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'-'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    sign <span class="token operator">=</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'+'</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="3-數字轉換與溢位檢查">3. 數字轉換與溢位檢查</h4>
+<p>每次加入新數字前，檢查是否可能溢位：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>sum <span class="token operator">></span> INT_MAX <span class="token operator">/</span> <span class="token number">10</span> <span class="token operator">||</span> 
+   <span class="token punctuation">(</span>sum <span class="token operator">==</span> INT_MAX <span class="token operator">/</span> <span class="token number">10</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token char">'0'</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>sign <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">?</span> INT_MAX <span class="token operator">:</span> INT_MIN<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>可使用 <code>isdigit(s[i])</code> 判斷是否為數字。</p>
+</blockquote>
+<hr>
+<h3 id="C-程式碼">C++ 程式碼</h3>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token keyword">int</span> <span class="token function">reverse</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment">//存放反轉後的結果</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>x <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">int</span> digit <span class="token operator">=</span> x <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">;</span>
-            <span class="token comment">// 檢查反轉後的結果是否會溢位</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>ans <span class="token operator">></span> INT_MAX <span class="token operator">/</span> <span class="token number">10</span> <span class="token operator">||</span> ans <span class="token operator">&lt;</span> INT_MIN <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">)</span>
-                <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token function">myAtoi</span><span class="token punctuation">(</span>string s<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-            ans <span class="token operator">=</span> ans <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> digit<span class="token punctuation">;</span>
-            x <span class="token operator">/=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> sign <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> n <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 1. 忽略前導空格</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> n <span class="token operator">&amp;&amp;</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">' '</span><span class="token punctuation">)</span> i<span class="token operator">++</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 2. 處理正負號</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> n <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'+'</span> <span class="token operator">||</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'-'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            sign <span class="token operator">=</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'+'</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
         <span class="token punctuation">&#125;</span>
-        <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+
+        <span class="token comment">// 3. 處理數字並檢查溢位</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> n <span class="token operator">&amp;&amp;</span> <span class="token function">isdigit</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>sum <span class="token operator">></span> INT_MAX <span class="token operator">/</span> <span class="token number">10</span> <span class="token operator">||</span> 
+               <span class="token punctuation">(</span>sum <span class="token operator">==</span> INT_MAX <span class="token operator">/</span> <span class="token number">10</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token char">'0'</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> <span class="token punctuation">(</span>sign <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">?</span> INT_MAX <span class="token operator">:</span> INT_MIN<span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            sum <span class="token operator">=</span> sum <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token char">'0'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">return</span> sum <span class="token operator">*</span> sign<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="為什麼是-ans-INT-MAX-10？">為什麼是 <code>ans &gt; INT_MAX / 10</code>？</h3>
-<p><code>INT_MAX</code> 是 2147483647。假設 <code>ans</code> 已經接近 <code>INT_MAX</code>，如果我們將 <code>ans</code> 乘以 10，就會變成更大的數字，可能會超過 <code>INT_MAX</code>。為了防止溢位，我們需要確保在將 <code>ans</code> 乘以 10 之前，<code>ans * 10</code> 不會超過 <code>INT_MAX</code>，這樣就能避免溢位。</p>
-<h4 id="例子">例子</h4>
-<p>假設 <code>x = 2147483647</code>，在某個 <code>while</code> 迴圈中，假設 <code>ans = 214748364</code>。此時，如果我們繼續反轉數字並將 <code>ans</code> 乘以 10，會得到 <code>2147483640</code>。<br>
-接著，如果加上下一個數字 <code>digit</code>（即 7），那麼 <code>2147483640 + 7 = 2147483647</code>，這仍然是 <code>INT_MAX</code>，是有效的。<br>
-但是，假設此時 <code>ans = 214748365</code>，那麼 <code>214748365 * 10 = 2147483650</code>，這將超過 <code>INT_MAX</code>，因此會發生溢位。<br>
-因此，為了防止這種情況，我們檢查 <code>ans &gt; INT_MAX / 10</code>，這樣可以確保在乘以 10 之前不會導致溢位。</p>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h3 id="⏱-時間與空間複雜度">⏱ 時間與空間複雜度</h3>
+<ul>
+<li><strong>時間複雜度</strong>：<code>O(n)</code>，其中 <code>n</code> 為輸入字串長度。</li>
+<li><strong>空間複雜度</strong>：<code>O(1)</code>，使用常數空間。</li>
+</ul>
+<hr>
 
                 
             </div>
@@ -427,7 +487,7 @@ Output: 21</p>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jinyanlin.github.io/2025/03/14/LeetCode-7-Reverse-Integer/">https://jinyanlin.github.io/2025/03/14/LeetCode-7-Reverse-Integer/</a>
+                    <a href="https://jinyanlin.github.io/2025/03/24/LeetCode-8-String-to-Integer-atoi/">https://jinyanlin.github.io/2025/03/24/LeetCode-8-String-to-Integer-atoi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -465,8 +525,8 @@ Output: 21</p>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Math/">
-                                    <span class="chip bg-color">Math</span>
+                                <a href="/tags/String/">
+                                    <span class="chip bg-color">String</span>
                                 </a>
                             
                         </div>
@@ -512,9 +572,10 @@ Output: 21</p>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2025/03/24/LeetCode-8-String-to-Integer-atoi/">
                     <div class="card-image">
@@ -532,9 +593,63 @@ Output: 21</p>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-03-24
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-03-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/LeetCode/" class="post-category">
+                                    LeetCode
+                                </a>
+                            
+                            <a href="/categories/LeetCode/LeetCode-Medium/" class="post-category">
+                                    LeetCode Medium
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/String/">
+                        <span class="chip bg-color">String</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/03/14/LeetCode-7-Reverse-Integer/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="LeetCode 7. Reverse Integer">
+                        
+                        <span class="card-title">LeetCode 7. Reverse Integer</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-03-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -554,65 +669,8 @@ Output: 21</p>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/String/">
-                        <span class="chip bg-color">String</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2025/03/11/LeetCode-3-Longest-Substring-Without-Repeating-Characters/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="LeetCode 3 Longest Substring Without Repeating Characters">
-                        
-                        <span class="card-title">LeetCode 3 Longest Substring Without Repeating Characters</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Given a string s, find the length of the longest substring without duplicate characters.
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-03-11
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/LeetCode/" class="post-category">
-                                    LeetCode
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Hash-Table/">
-                        <span class="chip bg-color">Hash Table</span>
-                    </a>
-                    
-                    <a href="/tags/String/">
-                        <span class="chip bg-color">String</span>
-                    </a>
-                    
-                    <a href="/tags/Sliding-Window/">
-                        <span class="chip bg-color">Sliding Window</span>
+                    <a href="/tags/Math/">
+                        <span class="chip bg-color">Math</span>
                     </a>
                     
                 </div>

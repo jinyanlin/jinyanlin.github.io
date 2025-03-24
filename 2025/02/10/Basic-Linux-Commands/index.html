@@ -6,7 +6,10 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Basic Linux Commands, Kyle Lin">
     <meta name="description" content="Linux Kernel
-">
+ls (顯示目錄)
+直接執行 ls 不帶任何參數的話，會列出目前目錄中的檔案與目錄列表。
+jinyan@LAPTOP:/mnt/d/pra_linux/Africa$ ls
+a.txt  b.txt  b.txt~">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -351,6 +354,47 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="Linux-Kernel">Linux Kernel</h2>
+<h3 id="ls-顯示目錄">ls (顯示目錄)</h3>
+<p><strong>直接執行 ls 不帶任何參數的話，會列出目前目錄中的檔案與目錄列表。</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jinyan@LAPTOP:/mnt/d/pra_linux/Africa$ <span class="token function">ls</span>
+a.txt  b.txt  b.txt~<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="ls-l">ls -l</h4>
+<p><strong><code>-l</code> 參數可以顯示檔案與目錄的詳細資訊。</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jinyan@LAPTOP:/mnt/d/pra_linux/Africa$ <span class="token function">ls</span> <span class="token parameter variable">-l</span>
+<span class="token parameter variable">-rwxrwxrwx</span> <span class="token number">1</span> jinyan jinyan <span class="token number">21</span> Mar <span class="token number">14</span> <span class="token number">16</span>:48 a.txt
+<span class="token parameter variable">-rwxrwxrwx</span> <span class="token number">1</span> jinyan jinyan <span class="token number">21</span> Mar <span class="token number">14</span> <span class="token number">16</span>:49 b.txt
+<span class="token parameter variable">-rwxrwxrwx</span> <span class="token number">1</span> jinyan jinyan <span class="token number">21</span> Mar <span class="token number">14</span> <span class="token number">16</span>:48 b.txt~<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="ls-a">ls -a</h4>
+<p><strong><code>-a</code> 參數可以顯示隱藏的檔案與目錄。</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jinyan@LAPTOP:/mnt/d/pra_linux/Africa$ <span class="token function">ls</span> <span class="token parameter variable">-a</span>
+<span class="token builtin class-name">.</span>  <span class="token punctuation">..</span>  a.txt  b.txt  b.txt~<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="ls-R">ls -R</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jinyan@LAPTOP:/mnt/d/pra_linux$ <span class="token function">ls</span> <span class="token parameter variable">-R</span>
+.:
+Africa  America  Asia  Europe
+
+./Africa:
+a.txt  b.txt  b.txt~
+
+./America:
+
+./Asia:
+China  India  taiwan.txt
+
+./Asia/China:
+
+./Asia/India:
+Mumbai
+
+./Asia/India/Mumbai:
+
+./Europe:
+taiwan.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="cp-複製">cp (複製)</h3>
+<p><em>在 Linux 系統之中若要進行檔案或目錄的複製，可以使用 cp 指令。</em></p>
+<p>若要將 a.txt 檔案複製一份到 b.txt，可以執行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">// 將 taiwan.txt 複製到 japan.txt
+jinyan@LAPTOP:/mnt/d/pra_linux/Asia$ <span class="token function">cp</span> taiwan.txt japan.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
                 
             </div>
