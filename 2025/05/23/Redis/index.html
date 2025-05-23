@@ -372,6 +372,12 @@
 <p>雖然 Redis 是 in-memory 系統，但也提供資料持久化機制（RDB、AOF），在重啟之後仍能保留資料。</p>
 <h3 id="4-支援-Pub-Sub-訊息機制">4. 支援 Pub/Sub 訊息機制</h3>
 <p>可用於即時通訊、即時通知等場景。</p>
+<blockquote>
+<p><img src="https://i.imgur.com/kSNn6we.png" alt></p>
+<blockquote>
+<p>Pub/Sub是一個常見的通知方案，這個功能幾乎跟Redis一起誕生。消費者透過SUBSCRIBE訂閱一個主題，在生產者PUBLISH訊息進主題後就會收到。</p>
+</blockquote>
+</blockquote>
 <h3 id="5-原子操作">5. 原子操作</h3>
 <p>所有的 Redis 操作都是原子的，可以避免 race condition。</p>
 <h3 id="6-有彈性">6. 有彈性</h3>
