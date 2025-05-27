@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Redis, Kyle Lin">
-    <meta name="description" content="Redis是一個開源的記憶體內資料結構儲存系統，可作為資料庫、快取、訊息代理中介或工作佇列。">
+    <meta name="keywords" content="Laravel Queue, Kyle Lin">
+    <meta name="description" content="本文介紹如何使用 Laravel 的 Queue 系統，將任務（如寄信）儲存至資料庫並背景處理，提升應用效能。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Redis | Kyle Lin</title>
+    <title>Laravel Queue | Kyle Lin</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Redis</h1>
+                    <h1 class="description center-align post-title">Laravel Queue</h1>
                 </div>
             </div>
         </div>
@@ -295,8 +295,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Cached/">
-                                <span class="chip bg-color">Cached</span>
+                            <a href="/tags/Queue/">
+                                <span class="chip bg-color">Queue</span>
+                            </a>
+                        
+                            <a href="/tags/Background-Jobs/">
+                                <span class="chip bg-color">Background Jobs</span>
                             </a>
                         
                     </div>
@@ -307,8 +311,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Database/" class="post-category">
-                                Database
+                            <a href="/categories/Laravel/" class="post-category">
+                                Laravel
                             </a>
                         
                     </div>
@@ -320,7 +324,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2025-05-23
+                    2025-05-27
                 </div>
                 
 
@@ -349,75 +353,77 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1>Redis</h1>
-<h2 id="什麼是-Redis？">什麼是 Redis？</h2>
-<p>Redis（<strong>RE</strong>mote <strong>DI</strong>ctionary <strong>S</strong>erver）是一個開源的記憶體內資料結構儲存系統，可作為資料庫、快取、訊息代理中介或工作佇列。它支援多種資料結構，包括：</p>
+                <h2 id="Laravel-Queue-是什麼？">Laravel Queue 是什麼？</h2>
+<p>Laravel 的 Queue 系統可用來延遲執行密集或耗時的任務，例如：</p>
 <ul>
-<li>Strings（字串）</li>
-<li>Lists（串列）</li>
-<li>Sets（集合）</li>
-<li>Hashes（雜湊）</li>
-<li>Sorted Sets（有序集合）</li>
-<li>Streams（串流）</li>
-<li>Bitmaps、HyperLogLogs、Geospatial indexes 等進階資料型別</li>
+<li>寄送註冊歡迎信</li>
+<li>圖片或影片處理</li>
+<li>外部 API 呼叫</li>
+<li>推播通知</li>
 </ul>
-<p><strong>Redis 是用 C 語言寫成的，主打極致的效能與簡潔的 API。</strong></p>
-<hr>
-<h2 id="Redis-優勢">Redis 優勢</h2>
-<h3 id="1-快速">1. 快速</h3>
-<p>Redis 將資料儲存在記憶體中，而不是硬碟，因此操作速度非常快，每秒可以處理上百萬次請求。</p>
-<h3 id="2-支援多種資料結構">2. 支援多種資料結構</h3>
-<p>這讓開發者可以更彈性地處理資料，例如：用 List 實作留言板、用 Set 做標籤系統、用 Hash 儲存使用者資料。</p>
-<h3 id="3-持久化選項">3. 持久化選項</h3>
-<p>雖然 Redis 是 in-memory 系統，但也提供資料持久化機制（RDB、AOF），在重啟之後仍能保留資料。</p>
-<h3 id="4-支援-Pub-Sub-訊息機制">4. 支援 Pub/Sub 訊息機制</h3>
-<p>可用於即時通訊、即時通知等場景。</p>
-<blockquote>
-<p><img src="https://i.imgur.com/kSNn6we.png" alt></p>
-<blockquote>
-<p>Pub/Sub是一個常見的通知方案，這個功能幾乎跟Redis一起誕生。消費者透過SUBSCRIBE訂閱一個主題，在生產者PUBLISH訊息進主題後就會收到。</p>
-</blockquote>
-</blockquote>
-<h3 id="5-原子操作">5. 原子操作</h3>
-<p>所有的 Redis 操作都是原子的，可以避免 race condition。</p>
-<h3 id="6-有彈性">6. 有彈性</h3>
-<p>NoSQL 資料庫無需固定結構定義即可儲存資料，而 Redis 資料庫也繼承了這項彈性優勢。</p>
-<hr>
-<h2 id="Redis-常見應用場景">Redis 常見應用場景</h2>
-<ol>
-<li>
-<p><strong>快取熱門資料（Cache）</strong></p>
-<ul>
-<li>例如熱門文章、用戶資訊快取，減少對資料庫的頻繁查詢。</li>
-</ul>
-</li>
-<li>
-<p><strong>分布式鎖</strong></p>
-<ul>
-<li>利用 Redis 的 <code>SET key value NX PX</code> 指令可以快速實作分布式鎖，防止多個實例重複執行相同任務。</li>
-</ul>
-</li>
-<li>
-<p><strong>Session 儲存</strong></p>
-<ul>
-<li>將用戶的登入狀態與會話資料儲存在 Redis 中，達成跨伺服器共享。</li>
-</ul>
-</li>
-<li>
-<p><strong>任務佇列</strong></p>
-<ul>
-<li>使用 List 或 Stream 做非同步處理，例如寄信、圖像壓縮等背景任務。</li>
-</ul>
-</li>
-<li>
-<p><strong>排行榜系統</strong></p>
-<ul>
-<li>使用 Sorted Set 可輕鬆實作如遊戲排行榜等功能。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="基本安裝與操作">基本安裝與操作</h2>
+<p>Queue 的核心概念是「<strong>把任務塞進佇列，讓 worker 背景處理</strong>」，這樣就不會影響使用者體驗。</p>
+<h2 id="建立資料表：jobs">建立資料表：jobs</h2>
+<p>執行以下 Artisan 指令來建立資料表 migration：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">php artisan queue:table
+php artisan queue:failed-table
+php artisan migrate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="建立-Job-類別">建立 Job 類別</h2>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">php artisan make:job SendWelcomeEmail<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>開啟 app/Jobs/SendWelcomeEmail.php，修改內容如下：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Models<span class="token punctuation">\</span>User</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Mail<span class="token punctuation">\</span>WelcomeMail</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Bus<span class="token punctuation">\</span>Queueable</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Contracts<span class="token punctuation">\</span>Queue<span class="token punctuation">\</span>ShouldQueue</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Queue<span class="token punctuation">\</span>InteractsWithQueue</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Queue<span class="token punctuation">\</span>SerializesModels</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Support<span class="token punctuation">\</span>Facades<span class="token punctuation">\</span>Mail</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">SendWelcomeEmail</span> <span class="token keyword">implements</span> <span class="token class-name">ShouldQueue</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">use</span> <span class="token package">Queueable</span><span class="token punctuation">,</span> InteractsWithQueue<span class="token punctuation">,</span> SerializesModels<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token keyword">public</span> <span class="token class-name type-declaration">User</span> <span class="token variable">$user</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">handle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">void</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token class-name static-context">Mail</span><span class="token operator">::</span><span class="token function">to</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">user</span><span class="token operator">-></span><span class="token property">email</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">send</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">WelcomeMail</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">user</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="建立-Mail-類別與模板">建立 Mail 類別與模板</h2>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">php artisan make:mail WelcomeMail <span class="token parameter variable">--markdown</span><span class="token operator">=</span>emails.welcome<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>編輯 WelcomeMail 類別：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token keyword">public</span> <span class="token class-name type-declaration">User</span> <span class="token variable">$user</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">subject</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'歡迎加入我們！'</span><span class="token punctuation">)</span>
+                <span class="token operator">-></span><span class="token function">markdown</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'emails.welcome'</span><span class="token punctuation">)</span>
+                <span class="token operator">-></span><span class="token function">with</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'user'</span> <span class="token operator">=></span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">user</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>編輯對應的 <code>resources/views/emails/welcome.blade.php：</code></p>
+<pre class="line-numbers language-h" data-language="h"><code class="language-h">@component(&#39;mail::message&#39;)
+# 嗨 &#123;&#123; $user-&gt;name &#125;&#125;
+
+歡迎加入我們的網站，祝你使用愉快！
+
+@component(&#39;mail::button&#39;, [&#39;url&#39; &#x3D;&gt; config(&#39;app.url&#39;)])
+開始使用
+@endcomponent
+
+感謝使用！  
+&#123;&#123; config(&#39;app.name&#39;) &#125;&#125;
+@endcomponent<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Dispatch-任務">Dispatch 任務</h2>
+<p>在你的 Controller 中，例如使用者註冊後：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token variable">$user</span> <span class="token operator">=</span> <span class="token class-name static-context">User</span><span class="token operator">::</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name static-context">SendWelcomeEmail</span><span class="token operator">::</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token variable">$user</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>此時任務會被寫入 jobs 表中，等待執行。</p>
+<h2 id="啟動-Worker-處理任務">啟動 Worker 處理任務</h2>
+<p>執行以下指令來開始處理佇列任務：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">php artisan queue:work<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>這會持續執行並處理 jobs 表中的任務。</p>
+<h2 id="執行成果">執行成果</h2>
+<p><img src="https://i.postimg.cc/YC9Tx3d1/welcome.jpg" alt="welcome.jpg"></p>
 
                 
             </div>
@@ -444,7 +450,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jinyanlin.github.io/2025/05/23/Redis/">https://jinyanlin.github.io/2025/05/23/Redis/</a>
+                    <a href="https://jinyanlin.github.io/2025/05/27/Laravel-Queue/">https://jinyanlin.github.io/2025/05/27/Laravel-Queue/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -482,8 +488,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Cached/">
-                                    <span class="chip bg-color">Cached</span>
+                                <a href="/tags/Queue/">
+                                    <span class="chip bg-color">Queue</span>
+                                </a>
+                            
+                                <a href="/tags/Background-Jobs/">
+                                    <span class="chip bg-color">Background Jobs</span>
                                 </a>
                             
                         </div>
@@ -529,9 +539,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2025/05/27/Laravel-Queue/">
                     <div class="card-image">
@@ -549,9 +560,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-05-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -564,6 +575,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -586,35 +598,31 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/04/22/LeetCode-9-Palindrome-Number/">
+                <a href="/2025/05/23/Redis/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="LeetCode 9. Palindrome Number">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Redis">
                         
-                        <span class="card-title">LeetCode 9. Palindrome Number</span>
+                        <span class="card-title">Redis</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Given an integer x, return true if x is a palindrome, and false otherwise.
+                            Redis是一個開源的記憶體內資料結構儲存系統，可作為資料庫、快取、訊息代理中介或工作佇列。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/LeetCode/" class="post-category">
-                                    LeetCode
-                                </a>
-                            
-                            <a href="/categories/LeetCode/LeetCode-Easy/" class="post-category">
-                                    LeetCode Easy
+                            <a href="/categories/Database/" class="post-category">
+                                    Database
                                 </a>
                             
                             
@@ -624,8 +632,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Math/">
-                        <span class="chip bg-color">Math</span>
+                    <a href="/tags/Cached/">
+                        <span class="chip bg-color">Cached</span>
                     </a>
                     
                 </div>
